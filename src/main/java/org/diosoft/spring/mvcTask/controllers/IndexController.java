@@ -1,23 +1,18 @@
 package org.diosoft.spring.mvcTask.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping ("/")
 public class IndexController {
+	/**
+	 * View name : form.
+	 */
+	public static final String VIEW_NAME_INDEX_PAGE = "hello";
 
-    @RequestMapping
-    @ResponseBody
-    public String index(){
-        return "<h1>Index</h1>";
-    }
-
-    @RequestMapping("/hello")
-    public String hello(ModelMap modelMap){
-        modelMap.addAttribute("message", "Hello World");
-        return "hello";
-    }
+	@RequestMapping ()
+	public String hello() {
+		return VIEW_NAME_INDEX_PAGE;
+	}
 }
