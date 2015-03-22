@@ -1,7 +1,10 @@
 package org.diosoft.spring.mvcTask.services;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.UUID;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * User data business object.
@@ -26,22 +29,26 @@ public class UserBO implements Serializable, Cloneable {
 	/**
 	 * Name.
 	 */
+	@NotEmpty(message = "Please, specify your first name.")
 	private String firstName;
 
 	/**
 	 * Age.
 	 */
-	private int age;
+	@NotNull (message = "Please, specify your age.")
+	private Integer age;
 
 	/**
-	 * Age, when user starts to smoke.
+	 * Age, when user started to smoke.
 	 */
-	private int startToSmokeAge;
+	@NotNull(message = "Please, tell us when did u start to smoke.")
+	private Integer startToSmokeAge;
 
 	/**
 	 * How many cigarettes does the user smoke per day.
 	 */
-	private int cigarettePerDay;
+	@NotNull(message = "Please, tell us how many cigarettes do u smoke per day.")
+	private Integer cigarettePerDay;
 
 	/**
 	 *
@@ -66,27 +73,27 @@ public class UserBO implements Serializable, Cloneable {
 		this.firstName = firstName;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public int getStartToSmokeAge() {
+	public Integer getStartToSmokeAge() {
 		return startToSmokeAge;
 	}
 
-	public void setStartToSmokeAge(int startToSmokeAge) {
+	public void setStartToSmokeAge(Integer startToSmokeAge) {
 		this.startToSmokeAge = startToSmokeAge;
 	}
 
-	public int getCigarettePerDay() {
+	public Integer getCigarettePerDay() {
 		return cigarettePerDay;
 	}
 
-	public void setCigarettePerDay(int cigarettePerDay) {
+	public void setCigarettePerDay(Integer cigarettePerDay) {
 		this.cigarettePerDay = cigarettePerDay;
 	}
 
