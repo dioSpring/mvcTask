@@ -1,4 +1,4 @@
-package org.diosoft.spring.mvcTask.services;
+package org.diosoft.spring.mvcTask.model;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -8,7 +8,7 @@ public class HolidayBO implements Serializable, Cloneable {
 	private static final long serialVersionUID = -4066662426799700901L;
 	private UUID id;
 	private String memorableHoliday;
-
+	
 	private String unlikedHoliday;
 
 	public HolidayBO() {
