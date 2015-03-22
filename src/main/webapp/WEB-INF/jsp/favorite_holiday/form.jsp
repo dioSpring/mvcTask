@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
     <title></title>
@@ -6,11 +7,13 @@
 <body>
 
 <form name="holidayForm" action="save" method="post">
-    <label for="startToSmokeAge">What is you memorable holiday in your life?</label>
-    <input id="startToSmokeAge" type="number" name="memorableHoliday" value="">
+    <label for="memorableHoliday">What is you memorable holiday in your life?</label>    
+    <form:errors path="memorableHoliday" cssStyle="color:red"/>
+    <input id="memorableHoliday" name="memorableHoliday" value="">
     <br>
-    <label for="cigarettePerDay">What is most unliked holiday for you?</label>
-    <input id="cigarettePerDay" type="number" name="unlikedHoliday" value="">
+    <form:errors path="unlikedHoliday" cssStyle="color:red"/>
+    <label for="unlikedHoliday">What is most unliked holiday for you?</label>
+    <input id="unlikedHoliday" type="number" name="unlikedHoliday" value="">
     <br>
     <input type="submit">
 </form>

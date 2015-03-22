@@ -2,14 +2,14 @@ package org.diosoft.spring.mvcTask.controllers;
 
 import java.io.File;
 
-import org.diosoft.spring.mvcTask.services.HolidayBO;
+import org.diosoft.spring.mvcTask.model.HolidayBO;
 import org.diosoft.spring.mvcTask.services.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * holiday controller.
@@ -30,25 +30,22 @@ public class HolidayController {
 	public String form() {
 		return VIEW_NAME_FORM;
 	}
-	
+
 	@RequestMapping("result")
 	public String result() {
 		return VIEW_RESULT_FORM;
 	}
 
-
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@RequestParam("memorableHoliday") final String memorableHoliday,
-			@RequestParam("unlikedHoliday") final String unlikedHoliday, final ModelMap modelMap) {
-
-		// IM TODO:add validation
-		HolidayBO answer = new HolidayBO();
-		answer.setMemorableHoliday(memorableHoliday);
-		answer.setUnlikedHoliday(unlikedHoliday);
-
+	public String save(@ModelAttribute("holidayForm") final HolidayBO answer, @CookieValue(value="userId") String userId) {
+		
+		if(userId.isEmpty()){
+			//throw exeption or smth else
+		}
+		
 		holidayService.save(answer);
 
-		return VIEW_RESULT_FORM;
+		return "result";
 	}
 
 }
