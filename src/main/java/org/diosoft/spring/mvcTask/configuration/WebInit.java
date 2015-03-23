@@ -19,6 +19,7 @@ public class WebInit implements WebApplicationInitializer {
         ServletRegistration.Dynamic indexDispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
         indexDispatcher.setLoadOnStartup(1);
         indexDispatcher.addMapping("/");
+        indexDispatcher.setAsyncSupported(true);
     }
 
     private AnnotationConfigWebApplicationContext getContext() {
