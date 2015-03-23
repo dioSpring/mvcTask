@@ -1,6 +1,8 @@
 package org.diosoft.spring.mvcTask.controllers;
 
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.diosoft.spring.mvcTask.services.PollService;
 import org.diosoft.spring.mvcTask.model.UserBO;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * Poll controller.
@@ -52,18 +55,26 @@ public class PollController {
 	 * @return model name to render
 	 */
 	@RequestMapping (value = "save", method = RequestMethod.POST)
-	public String save(
+	public DeferredResult<String> save(
 			@Validated final UserBO user,
 			final BindingResult errors,
 			final Model model) {
 
-		if (errors.hasErrors()) {
-			return VIEW_NAME_FORM;
-		}
+		final DeferredResult<String> task = new DeferredResult<>();
+		final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-		pollService.save(user);
+		executorService.submit(new Runnable() {
+			@Override
+			public void run() {
+				if (errors.hasErrors()) {
+					task.setResult(VIEW_NAME_FORM);
+				}
 
-		return "redirect:results";
+				pollService.save(user);
+				task.setResult("redirect:results");
+			}
+		});
+		return task;
 	}
 
 	@RequestMapping (value = "results", method = RequestMethod.GET)
