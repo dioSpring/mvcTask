@@ -1,4 +1,4 @@
-package org.diosoft.spring.mvcTask.services;
+package org.diosoft.spring.mvcTask.model;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -127,7 +127,7 @@ public class UserBO implements Serializable, Cloneable {
 	}
 
 	@Override
-	protected UserBO clone() {
+	public UserBO clone() {
 		try {
 			return UserBO.class.cast(super.clone());
 		} catch (final CloneNotSupportedException e) {

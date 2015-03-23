@@ -2,10 +2,8 @@ package org.diosoft.spring.mvcTask.controllers;
 
 import java.io.File;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.diosoft.spring.mvcTask.services.PollService;
-import org.diosoft.spring.mvcTask.services.UserBO;
+import org.diosoft.spring.mvcTask.model.UserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;

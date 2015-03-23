@@ -2,6 +2,8 @@ package org.diosoft.spring.mvcTask.services;
 
 import java.util.List;
 
+import org.diosoft.spring.mvcTask.model.UserBO;
+
 /**
  * Poll storage service.
  *
