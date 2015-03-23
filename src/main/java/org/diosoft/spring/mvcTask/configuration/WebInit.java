@@ -20,6 +20,7 @@ public class WebInit implements WebApplicationInitializer {
         indexDispatcher.setLoadOnStartup(1);
 		indexDispatcher.setAsyncSupported(true);
         indexDispatcher.addMapping("/");
+        indexDispatcher.setAsyncSupported(true);
     }
 
     private AnnotationConfigWebApplicationContext getContext() {
