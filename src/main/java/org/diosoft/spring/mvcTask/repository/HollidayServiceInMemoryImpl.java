@@ -1,9 +1,10 @@
-package org.diosoft.spring.mvcTask.services;
+package org.diosoft.spring.mvcTask.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.diosoft.spring.mvcTask.model.HolidayBO;
+import org.diosoft.spring.mvcTask.services.HolidayService;
 import org.springframework.stereotype.Service;
 
 @Service

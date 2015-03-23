@@ -8,8 +8,8 @@ public class HolidayBO implements Serializable, Cloneable {
 	private static final long serialVersionUID = -4066662426799700901L;
 	private UUID id;
 	private String memorableHoliday;
-	
 	private String unlikedHoliday;
+	private UUID userId;
 
 	public HolidayBO() {
 		this.id = UUID.randomUUID();
@@ -37,6 +37,14 @@ public class HolidayBO implements Serializable, Cloneable {
 
 	public void setUnlikedHoliday(String unlikedHoliday) {
 		this.unlikedHoliday = unlikedHoliday;
+	}
+
+	public UUID getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UUID userId) {
+		this.userId = userId;
 	}
 
 }
