@@ -2,7 +2,7 @@ package org.diosoft.spring.mvcTask.controllers;
 
 import java.io.File;
 
-import org.diosoft.spring.mvcTask.exceptions.UserLoginExeption;
+import org.diosoft.spring.mvcTask.exceptions.UserLoginException;
 import org.diosoft.spring.mvcTask.model.HolidayBO;
 import org.diosoft.spring.mvcTask.services.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class HolidayController {
 		return VIEW_RESULT_FORM;
 	}
 	
-	@ExceptionHandler(UserLoginExeption.class)
+	@ExceptionHandler(UserLoginException.class)
 	public ModelAndView handleLoginExeption(){
 		ModelAndView modelMap = new ModelAndView();
 		modelMap.setViewName("user-do-not-autorized-exception");
@@ -49,10 +49,10 @@ public class HolidayController {
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("holidayForm") final HolidayBO answer, ModelMap model,
-			@CookieValue(value = "userId", defaultValue = "") String userId) throws UserLoginExeption {
+			@CookieValue(value = "userId", defaultValue = "") String userId) throws UserLoginException {
 
 		if (userId.isEmpty()) {
-			throw new UserLoginExeption();
+			throw new UserLoginException();
 		}
 		model.addAttribute("userId", userId);
 		holidayService.save(answer);
