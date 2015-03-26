@@ -3,13 +3,17 @@ package org.diosoft.spring.mvcTask.model;
 import java.util.Date;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class User {
 	private UUID id;
+	@NotEmpty
 	private String name;
 	private Date dateofbirth;
 
 	public User() {
 		id= UUID.randomUUID();
+		System.out.println("has been created new user: " + id);
 	}
 
 	public UUID getId() {

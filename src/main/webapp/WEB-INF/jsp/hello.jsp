@@ -11,7 +11,7 @@
 <a href="/poll/zarva/form">Smoking poll</a>
 </div>
 <div>
-<a href="user/login">Favorite holiday</a>
+<a href="favorite_holiday/login">Favorite holiday</a>
 </div>
 </body>
 </html>

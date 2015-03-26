@@ -8,10 +8,8 @@
 
 <form name="holidayForm" action="save" method="post">
     <label for="memorableHoliday">What is you memorable holiday in your life?</label>    
-    <form:errors path="memorableHoliday" cssStyle="color:red"/>
     <input id="memorableHoliday" name="memorableHoliday" value="">
     <br>
-    <form:errors path="unlikedHoliday" cssStyle="color:red"/>
     <label for="unlikedHoliday">What is most unliked holiday for you?</label>
     <input id="unlikedHoliday" type="number" name="unlikedHoliday" value="">
     <br>
