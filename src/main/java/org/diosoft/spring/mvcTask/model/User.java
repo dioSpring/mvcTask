@@ -1,39 +1,63 @@
 package org.diosoft.spring.mvcTask.model;
 
-import java.util.Date;
-import java.util.UUID;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.*;
 
 public class User {
-	private UUID id;
-	private String name;
-	private Date dateofbirth;
 
-	public User() {
-		id= UUID.randomUUID();
-	}
+    private UUID id;
+    @NotEmpty(message = "You should enter First Name")
+    private String firstname;
+    @NotEmpty(message = "You should enter First Name")
+    private String lastname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateofbirth;
 
-	public UUID getId() {
-		return id;
-	}
+    private Map<UUID, Questionaire> questionaireMap = new HashMap<>();
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public User() {
+        id = UUID.randomUUID();
+    }
 
-	public String getName() {
-		return name;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public Date getDateofbirth() {
-		return dateofbirth;
-	}
+    public String getFirstname() {
+        return firstname;
+    }
 
-	public void setDateofbirth(Date dateofbirth) {
-		this.dateofbirth = dateofbirth;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Date getDateofbirth() {
+        return dateofbirth;
+    }
+
+    public void setDateofbirth(Date dateofbirth) {
+        this.dateofbirth = dateofbirth;
+    }
+
+    public Map<UUID, Questionaire> getQuestionaireMap() {
+        return questionaireMap;
+    }
+
+    public void setQuestionaireMap(Map<UUID, Questionaire> questionaireMap) {
+        this.questionaireMap = questionaireMap;
+    }
 }

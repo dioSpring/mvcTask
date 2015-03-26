@@ -5,15 +5,20 @@
     <title></title>
 </head>
 <body>
-
-<form name="userForm" action="save" method="post">
-    <label for="name">Name</label>    
-    <input id="name" name="name" value="">
+<form:form action="save" method="post" commandName="user">
+    <label for="firstNameId">First Name</label>
+    <form:input path="firstname" id="firstNameId"/>
+    <form:errors path="firstname" cssStyle="color: red"/>
     <br>
-    <label for="dateofbirth">Date of birth</label>
-    <input id="dateofbirth" name="dateofbirth" value="">
+    <label for="lastNameId">Last Name</label>
+    <form:input path="lastname" id="lastNameId"/>
+    <form:errors path="lastname" cssStyle="color: red;"/>
     <br>
-    <input type="submit">
-</form>
+    <label for="dateofbirthId">Date of birth</label>
+    <form:input path="dateofbirth" id="dateofbirthId"/>
+    <form:errors path="dateofbirth" cssStyle="color: red;"/>
+    <br>
+    <input type="submit" value="Login">
+</form:form>
 </body>
 </html>

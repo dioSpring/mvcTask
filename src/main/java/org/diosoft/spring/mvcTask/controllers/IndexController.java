@@ -9,10 +9,10 @@ public class IndexController {
 	/**
 	 * View name : form.
 	 */
-	public static final String VIEW_NAME_INDEX_PAGE = "hello";
+	public static final String VIEW_NAME_INDEX_PAGE = "questionnaire-list";
 
 	@RequestMapping ()
-	public String hello() {
+	public String index() {
 		return VIEW_NAME_INDEX_PAGE;
 	}
 }
