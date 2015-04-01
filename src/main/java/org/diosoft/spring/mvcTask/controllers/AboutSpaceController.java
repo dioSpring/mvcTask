@@ -50,7 +50,7 @@ public class AboutSpaceController {
         } else if (result.hasErrors()) {
             return ABOUT_SPACE_FORM;
         } else {
-            User user = userRepository.get(UUID.fromString(userId));
+            User user = userRepository.get(userId);
             System.out.println("HHHHH: "+userId);
             System.out.println(user);
             user.getQuestionaireMap().put(aboutSpace.getId(), aboutSpace);
@@ -66,7 +66,7 @@ public class AboutSpaceController {
                 if (userId.isEmpty()||id.isEmpty()) {
                     return "redirect:/user";
                 } else {
-                    User user = userRepository.get(UUID.fromString(userId));
+                    User user = userRepository.get(userId);
                     AboutSpace aboutSpace = (AboutSpace) user.getQuestionaireMap().get(UUID.fromString(id));
                     model.addAttribute("aboutSpace", aboutSpace);
                     return ABOUT_SPACE_RESULT;

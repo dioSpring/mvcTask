@@ -1,63 +1,87 @@
 package org.diosoft.spring.mvcTask.model;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.*;
-
+@Entity
+@Table(name = "users")
 public class User {
 
-    private UUID id;
-    @NotEmpty(message = "You should enter First Name")
-    private String firstname;
-    @NotEmpty(message = "You should enter First Name")
-    private String lastname;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateofbirth;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_inden;
 
-    private Map<UUID, Questionaire> questionaireMap = new HashMap<>();
+	private String id;
 
-    public User() {
-        id = UUID.randomUUID();
-    }
+	@NotEmpty(message = "You should enter First Name")
+	private String firstname;
+	@NotEmpty(message = "You should enter First Name")
+	private String lastname;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateofbirth;
 
-    public UUID getId() {
-        return id;
-    }
+	private Map<UUID, Questionaire> questionaireMap = new HashMap<>();
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+	public User() {
+		id = UUID.randomUUID().toString();
+	}
 
-    public String getFirstname() {
-        return firstname;
-    }
+	public Long getId_inden() {
+		return id_inden;
+	}
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public void setId_inden(Long id_inden) {
+		this.id_inden = id_inden;
+	}
 
-    public String getLastname() {
-        return lastname;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public Date getDateofbirth() {
-        return dateofbirth;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public void setDateofbirth(Date dateofbirth) {
-        this.dateofbirth = dateofbirth;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    public Map<UUID, Questionaire> getQuestionaireMap() {
-        return questionaireMap;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    public void setQuestionaireMap(Map<UUID, Questionaire> questionaireMap) {
-        this.questionaireMap = questionaireMap;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public Date getDateofbirth() {
+		return dateofbirth;
+	}
+
+	public void setDateofbirth(Date dateofbirth) {
+		this.dateofbirth = dateofbirth;
+	}
+
+	public Map<UUID, Questionaire> getQuestionaireMap() {
+		return questionaireMap;
+	}
+
+	public void setQuestionaireMap(Map<UUID, Questionaire> questionaireMap) {
+		this.questionaireMap = questionaireMap;
+	}
 }

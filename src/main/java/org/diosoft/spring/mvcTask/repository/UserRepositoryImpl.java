@@ -10,29 +10,31 @@ import java.util.*;
  */
 @Component
 public class UserRepositoryImpl implements UserRepository {
-    private Map<java.util.UUID, User> userMap = new HashMap<>();
+    private Map<String, User> userMap = new HashMap<>();
 
-    @Override
-    public void add(User user) {
-        if(!exist(user.getId())){
-            userMap.put(user.getId(), user);
-        }
-    }
+	@Override
+	public void add(User user) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public User get(java.util.UUID userId) {
-        return userMap.get(userId);
-    }
+	@Override
+	public User get(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void remove(UUID userId) {
-        if(exist(userId)){
-            userMap.remove(userId);
-        }
-    }
+	@Override
+	public void remove(String userId) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public boolean exist(UUID userId) {
-        return userMap.containsKey(userId);
-    }
+	@Override
+	public boolean exist(String userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+   
 }

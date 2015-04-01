@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public interface UserRepository {
     void add(User user);
-    User get(UUID userId);
-    void remove(UUID userId);
-    boolean exist(UUID userId);
+    User get(String userId);
+    void remove(String userId);
+    boolean exist(String userId);
 }
