@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form:form action="login" method="post" commandName="loginDto">
+<form:form commandName="user" action="login" method="post">
     <label for="usernameId">Username</label>
     <form:input path="username" id="usernameId"/>
     <form:errors path="username" cssStyle="color: red"/>

@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div>User does't authorized</div>
-<a href="/user/signup">signup</a>
+<div>User already exists.Please type other username</div>
+<a href="signup">signup</a>
 </body>
 </html>

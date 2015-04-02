@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form:form action="signup" method="post" commandName="user">
+<form:form commandName="user" action="signup" method="post">
     <label for="usernameId">Username</label>
     <form:input path="username" id="usernameId"/>
     <form:errors path="username" cssStyle="color: red"/>
