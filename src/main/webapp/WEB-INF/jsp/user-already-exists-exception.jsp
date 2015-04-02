@@ -4,6 +4,8 @@
     <title></title>
 </head>
 <body>
-    <h1>TODO : Implement me</h1>
+
+<div>User already exists.Please type other username</div>
+<a href="signup">signup</a>
 </body>
 </html>

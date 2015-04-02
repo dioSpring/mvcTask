@@ -1,6 +1,5 @@
 package org.diosoft.spring.mvcTask.services;
 
-import org.diosoft.spring.mvcTask.dto.LoginDto;
 import org.diosoft.spring.mvcTask.model.User;
 
 /**
@@ -8,5 +7,6 @@ import org.diosoft.spring.mvcTask.model.User;
  */
 public interface UserService {
     void save(User user);
-    User get(LoginDto login);
+    User get(String  name,String pass);
+    boolean checkUserName(String  name);
 }
