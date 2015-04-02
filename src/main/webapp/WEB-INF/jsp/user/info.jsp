@@ -20,14 +20,9 @@
 <h4>First Name <%out.println(user.getFirstname());%></h4>
 <h4>Last Name <%out.println(user.getLastname());%></h4>
 <h4>Date of birth <%out.println(user.getDateofbirth());%></h4>
-<%--<h2>Test Passed <%out.println(user.getQuestionaireMap().size());%></h2>--%>
-<%--<h4>Passed</h4>--%>
-        <%--<%for(Questionaire questionaire: user.getQuestionaireMap().values()){%>--%>
-        <%--<a href="<%out.println(questionaire.getBaseUrl());%>/result?id=<%out.println(questionaire.getId());%>"><%out.println(questionaire.getDescription());%></a>--%>
-<%--<%}%>--%>
-<%--<h4>Available</h4>--%>
-<%--<a href="<%out.println(AboutSpace.BASEURL);%>"><%out.println(AboutSpace.DESCRIPTION);%></a>--%>
-<%--<br>--%>
 <a href="/user/logout">Logout</a>
+<div>Please select questionnaire</div>
+<div><a href="/space/about-space-form">space</a><div>
+<div><a href="/favorite_holiday/form">holliday</a><div>
 </body>
 </html>

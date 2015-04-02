@@ -3,7 +3,7 @@ package org.diosoft.spring.mvcTask.controllers;
 import java.io.File;
 
 import org.diosoft.spring.mvcTask.exceptions.UserLoginException;
-import org.diosoft.spring.mvcTask.model.HolidayBO;
+import org.diosoft.spring.mvcTask.model.Holiday;
 import org.diosoft.spring.mvcTask.services.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,7 +48,7 @@ public class HolidayController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("holidayForm") final HolidayBO answer, ModelMap model,
+	public String save(@ModelAttribute("holidayForm") final Holiday answer, ModelMap model,
 			@CookieValue(value = "userId", defaultValue = "") String userId) throws UserLoginException {
 
 		if (userId.isEmpty()) {

@@ -3,7 +3,7 @@ package org.diosoft.spring.mvcTask.model;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class HolidayBO implements Serializable, Cloneable {
+public class Holiday implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = -4066662426799700901L;
 	private UUID id;
@@ -11,7 +11,7 @@ public class HolidayBO implements Serializable, Cloneable {
 	private String unlikedHoliday;
 	private UUID userId;
 
-	public HolidayBO() {
+	public Holiday() {
 		this.id = UUID.randomUUID();
 	}
 

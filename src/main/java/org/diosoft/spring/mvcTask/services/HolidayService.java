@@ -2,13 +2,13 @@ package org.diosoft.spring.mvcTask.services;
 
 import java.util.List;
 
-import org.diosoft.spring.mvcTask.model.HolidayBO;
+import org.diosoft.spring.mvcTask.model.Holiday;
 
 public interface HolidayService {
 
-	HolidayBO get(HolidayBO answer);
+	Holiday get(Holiday answer);
 
-	HolidayBO save(HolidayBO answer);
+	Holiday save(Holiday answer);
 
-	List<HolidayBO> getAllAnswers();
+	List<Holiday> getAllAnswers();
 }
