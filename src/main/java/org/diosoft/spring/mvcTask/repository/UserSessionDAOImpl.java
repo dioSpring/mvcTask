@@ -31,6 +31,7 @@ public class UserSessionDAOImpl implements UserSessioDAO {
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(userSession);
         transaction.commit();
+        session.flush();
         session.close();
     }
 

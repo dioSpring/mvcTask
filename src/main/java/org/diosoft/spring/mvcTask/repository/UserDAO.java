@@ -1,8 +1,7 @@
 package org.diosoft.spring.mvcTask.repository;
 
+import org.diosoft.spring.mvcTask.dto.LoginDto;
 import org.diosoft.spring.mvcTask.model.User;
-
-import java.util.UUID;
 
 /**
  * Created by yar on 29.03.15.
@@ -10,7 +9,5 @@ import java.util.UUID;
 public interface UserDAO {
     void save(User user);
     User get(Long id);
-    User findByUsername(String username);
-    void remove(Long id);
-    boolean exist(Long id);
+    User findByUser(LoginDto loginDTO);
 }

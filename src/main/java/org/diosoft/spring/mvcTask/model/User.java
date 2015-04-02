@@ -14,20 +14,18 @@ public class User {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(unique = true)
     @NotEmpty(message = "You should enter username")
     private String username;
-//    @NotEmpty(message = "You should enter First Name")
+   
     private String firstname;
-//    @NotEmpty(message = "You should enter First Name")
     private String lastname;
+    
     @NotEmpty(message = "Enter password")
     private String password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateofbirth;
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private Map<UUID, Questionaire> questionaireMap = new HashMap<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserSession> sessions = new HashSet<>();
@@ -72,7 +70,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-//        this.password = UserPassword.getHash(password);
         this.password = password;
     }
 
@@ -83,15 +80,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    //    public Map<UUID, Questionaire> getQuestionaireMap() {
-//        return questionaireMap;
-//    }
-//
-//    public void setQuestionaireMap(Map<UUID, Questionaire> questionaireMap) {
-//        this.questionaireMap = questionaireMap;
-//    }
-
 
     public Set<UserSession> getSessions() {
         return sessions;

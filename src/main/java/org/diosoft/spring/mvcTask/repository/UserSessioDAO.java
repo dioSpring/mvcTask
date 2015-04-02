@@ -2,8 +2,6 @@ package org.diosoft.spring.mvcTask.repository;
 
 import org.diosoft.spring.mvcTask.model.UserSession;
 
-import java.util.UUID;
-
 /**
  * Created by yar on 29.03.15.
  */

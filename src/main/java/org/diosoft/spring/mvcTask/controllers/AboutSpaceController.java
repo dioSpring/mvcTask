@@ -1,21 +1,12 @@
 package org.diosoft.spring.mvcTask.controllers;
 
-import org.diosoft.spring.mvcTask.exceptions.UserAlreadyLogedInException;
+import java.io.File;
+
 import org.diosoft.spring.mvcTask.model.AboutSpace;
-import org.diosoft.spring.mvcTask.model.User;
-import org.diosoft.spring.mvcTask.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.util.UUID;
-import java.util.concurrent.Callable;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by yar on 26.03.15.

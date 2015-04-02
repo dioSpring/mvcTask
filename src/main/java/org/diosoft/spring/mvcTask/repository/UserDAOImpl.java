@@ -1,5 +1,6 @@
 package org.diosoft.spring.mvcTask.repository;
 
+import org.diosoft.spring.mvcTask.dto.LoginDto;
 import org.diosoft.spring.mvcTask.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -25,8 +26,8 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(user);
-
         transaction.commit();
+        session.flush();
         session.close();
     }
 
@@ -35,13 +36,14 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.openSession();
         User user = (User) session.load(User.class, id);
         session.close();
-        return user;
+        return null;
     }
-
+    
+    
     @Override
-    public User findByUsername(String username) {
+    public User findByUser(LoginDto loginDTO) {
         Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(User.class).add(Restrictions.eq("username", username));
+        Criteria criteria = session.createCriteria(User.class).add(Restrictions.eq("username", loginDTO.getUsername())).add(Restrictions.eq("password", loginDTO.getPassword()));
         List<User> users = criteria.list();
         if (users != null && users.size() > 0) {
             User user = users.get(0);
@@ -51,19 +53,5 @@ public class UserDAOImpl implements UserDAO {
         }
         session.close();
         return null;
-    }
-
-    @Override
-    public void remove(Long id) {
-//        Session session  = sessionFactory.openSession();
-//        session.createQuery("delete from User where u.id").setParameter()
-//        User user = (User) session.load(User.class, id);
-//        session.close();
-        return;
-    }
-
-    @Override
-    public boolean exist(Long id) {
-        return false;
     }
 }

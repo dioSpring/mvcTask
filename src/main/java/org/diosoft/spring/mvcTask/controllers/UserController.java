@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.File;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -42,105 +44,80 @@ public class UserController {
     @Autowired
     private UserSessionService userSessionService;
 
-
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder, Errors errors) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        binder.registerCustomEditor(Date.class, "dateofbirth", new CustomDateEditor(dateFormat, true));
-//    }
-
-    @RequestMapping()
-    public String index() {
-        return "redirect:/user/info";
-    }
-
-    @RequestMapping("signup")
-    public String signupForm(Model model, HttpServletResponse response) throws UserAlreadyLogedInException {
-        Cookie cookie = new Cookie("userId", UUID.randomUUID().toString());
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        model.addAttribute("user", new User());
-        return SIGNUP_FORM;
-    }
-
-    @RequestMapping("login")
+    @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginForm(Model model, HttpServletResponse response) throws UserAlreadyLogedInException {
-        Cookie cookie = new Cookie("userId", UUID.randomUUID().toString());
+        Cookie cookie = new Cookie("sessionId", UUID.randomUUID().toString());
         cookie.setPath("/");
         response.addCookie(cookie);
         model.addAttribute("loginDto", new LoginDto());
         return LOGIN_FORM;
     }
 
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String login(@ModelAttribute @Validated LoginDto loginDto, BindingResult result, @CookieValue(value = "sessionId", defaultValue = "") String sessionId, Model model, HttpServletResponse response) {
+        if (result.hasErrors()) {
+            return LOGIN_FORM;
+        } else {
+
+            User user = userService.get(loginDto);
+            if (user == null) {
+                return "redirect:/" + SIGNUP_FORM;
+            }
+            UserSession userSession = new UserSession();
+            userSession.setSessionId(sessionId);
+            userSession.setLastConnected(new Date());
+            userSession.setUser(user);
+
+            userSessionService.save(userSession);
+
+        }
+
+        return "redirect:/" + USER_INFO;
+    }
+
+    @RequestMapping(value = "signup", method = RequestMethod.GET)
+    public String signupForm(Model model, HttpServletResponse response) throws UserAlreadyLogedInException {
+        //IM TODO:tranfer LoginDTO
+        model.addAttribute("user", new User());
+        return SIGNUP_FORM;
+    }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public String signup(@ModelAttribute @Validated User user, BindingResult result,
-                         @CookieValue(value = "userId", defaultValue = "") String userId,
-                         HttpServletResponse response) throws UserAlreadyLogedInException {
+    public String signup(@ModelAttribute @Validated User user, BindingResult result, @CookieValue(value = "sessionId", defaultValue = "") String sessionId, HttpServletResponse response)
+            throws UserAlreadyLogedInException {
 
-        if (userId.isEmpty()) return "redirect:/user/signup";
+        if (sessionId.isEmpty())
+            return "redirect:/user/signup";
         if (result.hasErrors()) {
             return SIGNUP_FORM;
         } else {
             UserSession userSession = new UserSession();
-            userSession.setSessionId(userId);
-//            user.getSessions().add(userSession);
+            userSession.setSessionId(sessionId);
             userSession.setUser(user);
-//            userService.save(user);
             userSessionService.save(userSession);
         }
-        return "redirect:/user";
+        return "redirect:/" + USER_INFO;
     }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@ModelAttribute @Validated LoginDto loginDto, BindingResult result,
-                        @CookieValue(value = "userId", defaultValue = "") String userId,
-                        HttpServletResponse response) {
-        if (result.hasErrors()) {
-            return LOGIN_FORM;
-        } else {
-//            User user = userDAO.findByUsername(loginDto.getUsername());
-//            System.out.println(user);
-//            System.out.println(loginDto);
-//            if (user != null && user.getPassword().equals(loginDto.getPassword())) {
-//                UserSession session = new UserSession();
-//                session.setUser(user);
-//                userSessioDAO.save(session);
-//                System.out.println(session);
-//                Cookie cookie = new Cookie("userSessionId", session.getSessionId());
-//                cookie.setPath("/");
-//                response.addCookie(cookie);
-//            }
-        }
-        return "redirect:/user";
-    }
-
 
     @RequestMapping("info")
-    public String info(@CookieValue(value = "userId", defaultValue = "") String sessionId, ModelMap modelMap) throws UserLoginException {
-        if (!sessionId.isEmpty()) {
-            System.out.println(sessionId);
-            UserSession session = userSessionService.find(sessionId);
-            if (session != null&&session.getUser()!=null) {
-                modelMap.addAttribute("user", session.getUser());
-                return USER_INFO;
-            }
-        }
-        return "redirect:/user/signup";
+    public String info(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, ModelMap modelMap) throws UserLoginException {
+
+        modelMap.addAttribute("user", userSessionService.find(sessionId).getUser());
+        return USER_INFO;
+
     }
-//
-//    @RequestMapping("logout")
-//    public String logout(@CookieValue(value = "userId", defaultValue = "") String userId, ModelMap modelMap, HttpServletResponse response) {
-//        if (!userId.isEmpty() && userRepository.exist(UUID.fromString(userId))) {
-//            userRepository.remove(UUID.fromString(userId));
-//            Cookie cookie = new Cookie("userId", "");
-//            cookie.setPath("/");
-//            cookie.setMaxAge(0);
-//            response.addCookie(cookie);
-//        }
-//        modelMap.addAttribute("user", new User());
-//        return LOGIN_FORM;
-//    }
+
+    @RequestMapping("logout")
+    public String logout(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, ModelMap modelMap, HttpServletResponse response) {
+        if (!sessionId.isEmpty()) {
+            Cookie cookie = new Cookie("sessionId", "");
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+        modelMap.addAttribute("loginDto", new LoginDto());
+        return "redirect:/"+LOGIN_FORM;
+    }
 
     @ExceptionHandler(UserLoginException.class)
     public ModelAndView handleLoginExeption() {
