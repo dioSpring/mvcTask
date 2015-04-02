@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.openSession();
         User user = (User) session.load(User.class, id);
         session.close();
-        return null;
+        return user;
     }
     
     

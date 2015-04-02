@@ -29,7 +29,7 @@ import java.util.UUID;
  * @author Iryna Matusevych
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
     public static final String QUESTIONNAIRE_LIST = "questionnaire-list";
@@ -79,8 +79,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)
-    public String signupForm(Model model, HttpServletResponse response) throws UserAlreadyLogedInException {
+    public String signupForm(Model model, HttpServletResponse response, @CookieValue(value = "sessionId", defaultValue = "") String sessionId) throws UserAlreadyLogedInException {
         //IM TODO:tranfer LoginDTO
+        if(!sessionId.isEmpty()){
+            throw new UserAlreadyLogedInException();
+        }
+        Cookie cookie = new Cookie("sessionId", UUID.randomUUID().toString());
+        cookie.setPath("/");
+        response.addCookie(cookie);
         model.addAttribute("user", new User());
         return SIGNUP_FORM;
     }
@@ -89,6 +95,7 @@ public class UserController {
     public String signup(@ModelAttribute @Validated User user, BindingResult result, @CookieValue(value = "sessionId", defaultValue = "") String sessionId, HttpServletResponse response)
             throws UserAlreadyLogedInException {
 
+        System.out.println(sessionId);
         if (sessionId.isEmpty())
             return "redirect:/user/signup";
         if (result.hasErrors()) {
@@ -104,10 +111,8 @@ public class UserController {
 
     @RequestMapping("info")
     public String info(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, ModelMap modelMap) throws UserLoginException {
-
         modelMap.addAttribute("user", userSessionService.find(sessionId).getUser());
         return USER_INFO;
-
     }
 
     @RequestMapping("logout")

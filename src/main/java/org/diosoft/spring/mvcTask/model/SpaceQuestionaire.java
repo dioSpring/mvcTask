@@ -2,32 +2,17 @@ package org.diosoft.spring.mvcTask.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
-
-/**
- * Created by yar on 26.03.15.
- */
-public class AboutSpace implements Questionaire {
-    private UUID id;
-    public static final String DESCRIPTION = "About Space";
-    public static final String BASEURL = "/aboutspace";
+@Entity
+public class SpaceQuestionaire extends Questionaire {
     @NotEmpty(message = "Write some words")
     private String aboutSpace;
     @NotNull(message = "Write years")
     private Integer earthOld;
 
-    public AboutSpace() {
-        this.id=UUID.randomUUID();
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+    public SpaceQuestionaire() {
+        setType(QuestionaireType.SPACE);
     }
 
     public String getAboutSpace() {
@@ -47,20 +32,10 @@ public class AboutSpace implements Questionaire {
     }
 
     @Override
-    public String getBaseUrl() {
-        return BASEURL;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
-    }
-
-    @Override
     public String toString() {
-        return "AboutSpace{" +
-                "id=" + id +
-                ", aboutSpace='" + aboutSpace + '\'' +
+        return "SpaceQuestionaire{" +
+                super.toString()+
+                "aboutSpace='" + aboutSpace + '\'' +
                 ", earthOld=" + earthOld +
                 '}';
     }
