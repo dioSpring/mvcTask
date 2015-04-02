@@ -6,5 +6,6 @@
 <body>
 
 <div>User does't authorized</div>
+<a href="/user/signup">signup</a>
 </body>
 </html>

@@ -45,7 +45,10 @@ public class UserController {
     private UserSessionService userSessionService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String loginForm(Model model, HttpServletResponse response) throws UserAlreadyLogedInException {
+    public String loginForm(Model model, HttpServletResponse response, @CookieValue(value = "sessionId", defaultValue = "") String sessionId) throws UserAlreadyLogedInException {
+        if(!sessionId.isEmpty()){
+            throw new UserAlreadyLogedInException();
+        }
         Cookie cookie = new Cookie("sessionId", UUID.randomUUID().toString());
         cookie.setPath("/");
         response.addCookie(cookie);

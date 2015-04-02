@@ -12,5 +12,6 @@
 </head>
 <body>
 <h4>User already loged in</h4>
+<a href="info">UserInfo</a>
 </body>
 </html>
