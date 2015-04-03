@@ -30,6 +30,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserSession> sessions = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Questionaire> questionaires = new HashSet<>();
+
     public User() {
     }
 
@@ -89,15 +92,11 @@ public class User {
         this.sessions = sessions;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", password='" + password + '\'' +
-                ", dateofbirth=" + dateofbirth +
-                '}';
+    public Set<Questionaire> getQuestionaires() {
+        return questionaires;
+    }
+
+    public void setQuestionaires(Set<Questionaire> questionaires) {
+        this.questionaires = questionaires;
     }
 }

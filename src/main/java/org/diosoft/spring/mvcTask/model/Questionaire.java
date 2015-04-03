@@ -1,12 +1,37 @@
 package org.diosoft.spring.mvcTask.model;
 
-import java.util.UUID;
+import javax.persistence.*;
 
-/**
- * Created by yar on 26.03.15.
- */
-public interface Questionaire {
-    UUID getId();
-    String getBaseUrl();
-    String getDescription();
+@Entity
+public abstract class Questionaire {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private QuestionaireType type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public QuestionaireType getType() {
+        return type;
+    }
+
+    public void setType(QuestionaireType type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Questionaire{" +
+                "id=" + id +
+                ", type=" + type +
+                '}';
+    }
 }

@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form:form action="save" method="post" commandName="aboutSpace">
+<form:form action="save" method="post" commandName="spaceQuestionaire">
   <label for="aboutSpaceId">About Space</label>
   <form:input path="aboutSpace" id="aboutSpaceId"/>
   <form:errors path="aboutSpace" cssStyle="color: red"/>
