@@ -25,6 +25,7 @@
 <h4>Passed</h4>
         <%for(Questionaire questionaire: user.getQuestionaires()){%>
         <a href="<%out.println(questionaire.getType().getBaseUrl());%>/result?id=<%out.println(questionaire.getId());%>"><%out.println(questionaire.getType().getDescription());%></a>
+</br>
 <%}%>
 <h4>Available</h4>
 <%for(QuestionaireType type: QuestionaireType.values()){%>

@@ -8,4 +8,5 @@ import org.diosoft.spring.mvcTask.model.UserSession;
 public interface UserSessionService {
     void save(UserSession userSession);
     UserSession find(String sessionId);
+    boolean isActive(String sessionId);
 }

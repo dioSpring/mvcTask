@@ -18,7 +18,6 @@ public class User {
     @Column(unique = true)
     @NotEmpty(message = "You should enter username")
     private String username;
-   
     private String firstname;
     private String lastname;
     
@@ -30,7 +29,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserSession> sessions = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Questionaire> questionaires = new HashSet<>();
 
     public User() {
@@ -98,5 +97,19 @@ public class User {
 
     public void setQuestionaires(Set<Questionaire> questionaires) {
         this.questionaires = questionaires;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", password='" + password + '\'' +
+                ", dateofbirth=" + dateofbirth +
+//                ", sessions=" + sessions +
+//                ", questionaires=" + questionaires +
+                '}';
     }
 }

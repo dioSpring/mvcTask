@@ -11,10 +11,11 @@ public class IndexController {
 	/**
 	 * View name : form.
 	 */
-	public static final String LOGIN_PAGE = "user" + File.separator + "login";;
+//	public static final String LOGIN_PAGE = "user" + File.separator + "login";;
+	public static final String USER_PAGE = "user";
 
 	@RequestMapping ()
 	public String index() {
-		return "redirect:/"+LOGIN_PAGE;
+		return "redirect:/"+USER_PAGE;
 	}
 }

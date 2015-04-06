@@ -12,7 +12,7 @@ public class UserSession {
     private String sessionId;
 
 //    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User user;
     private Date lastConnected;
 

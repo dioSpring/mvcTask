@@ -16,5 +16,7 @@
     <br>
     <input type="submit" value="Login">
 </form:form>
+<br>
+<a href="signup">Signup</a>
 </body>
 </html>

@@ -20,5 +20,14 @@ public class UserSessionServiceImpl implements UserSessionService{
         return userSessioDAO.findBySessionId(sessionId);
     }
 
+    @Override
+    public boolean isActive(String sessionId) {
+        boolean isActive=false;
+        UserSession userSession = find(sessionId);
+        System.out.println(userSession);
+        if(userSession!=null) isActive=true;
+        return isActive;
+    }
+
 
 }

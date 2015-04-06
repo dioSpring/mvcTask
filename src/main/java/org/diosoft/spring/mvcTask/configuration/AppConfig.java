@@ -61,7 +61,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/mvctask");
         dataSource.setUsername("root");
-        dataSource.setPassword("Alkogol.123");
+        dataSource.setPassword("1");
         return dataSource;
     }
 
@@ -75,6 +75,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         properties.setProperty("hibernate.current_session_context_class", "thread");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         localSessionFactoryBean.setHibernateProperties(properties);
         return localSessionFactoryBean;
     }
